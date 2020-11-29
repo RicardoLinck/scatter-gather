@@ -35,7 +35,9 @@ func (c *CancellationFetcher) Fetch(ctx context.Context, email string, results c
 	case result := <-r:
 		results <- result
 	case err := <-errCh:
-		log.Print(err)
+		if err != nil {
+			log.Print(err)
+		}
 	}
 	return nil
 }
